@@ -48,7 +48,7 @@ class APIRequest:
             params=self.context.get_parameters(),
             headers=self.context.get_headers())
         return APIResponse(r.status_code,
-                           json.loads(r.headers.__str__().replace("'", '"')),
+                           dict(r.headers),
                            json.loads(r.text))
 
     def __post(self):
@@ -57,7 +57,7 @@ class APIRequest:
                           json=self.context.get_parameters())
         print(r)
         return APIResponse(r.status_code,
-                           json.loads(r.headers.__str__().replace("'", '"')),
+                           dict(r.headers),
                            json.loads(r.text))
 
     def __put(self):
@@ -65,7 +65,7 @@ class APIRequest:
                          headers=self.context.get_headers(),
                          json=self.context.get_parameters())
         return APIResponse(r.status_code,
-                           json.loads(r.headers.__str__().replace("'", '"')),
+                           dict(r.headers),
                            json.loads(r.text))
 
     def __unknown(self):
